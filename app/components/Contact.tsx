@@ -8,8 +8,8 @@ export default function Contact() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [copied, setCopied] = useState(false)
 
-  const email = "phyothiha@gmail.com"
-  const phone = "+95 123 456 789"
+  const email = "phyozawhein2000@gmail.com"
+  const phone = "+959 973 876 832"
 
   const handleEmailClick = () => {
     window.location.href = `mailto:${email}?subject=Hello from Portfolio&body=I'm interested in working with you!`
