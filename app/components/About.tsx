@@ -50,8 +50,8 @@ export default function About() {
               coding, you can find me exploring new technologies, contributing
               to open source, or mentoring aspiring developers.
             </p>
-            
-            <div className="flex gap-3 flex-wrap text-sm md:text-base">
+
+            <div className="flex gap-3 flex-wrap text-sm md:text-base mb-6">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
                 <span>4+ Years Experience</span>
@@ -65,6 +65,20 @@ export default function About() {
                 <span>10+ Clients</span>
               </div>
             </div>
+
+            {/* Download CV Button */}
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href='/cv/PHYOZAWHEIN.pdf'
+              download
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold shadow-md hover:shadow-lg transition-all duration-300"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              Download CV
+            </motion.a>
           </motion.div>
 
           <motion.div

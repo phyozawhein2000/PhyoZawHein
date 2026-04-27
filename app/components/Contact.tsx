@@ -49,10 +49,10 @@ export default function Contact() {
   ]
 
   const socialLinks = [
-    { icon: <FaGithub className="w-5 h-5" />, name: "GitHub", link: "#", color: "hover:bg-gray-800" },
-    { icon: <FaLinkedin className="w-5 h-5" />, name: "LinkedIn", link: "#", color: "hover:bg-blue-600" },
-    { icon: <FaTwitter className="w-5 h-5" />, name: "Twitter", link: "#", color: "hover:bg-blue-400" },
-    { icon: <FaInstagram className="w-5 h-5" />, name: "Instagram", link: "#", color: "hover:bg-pink-600" },
+    { icon: <FaGithub className="w-5 h-5" />, name: "GitHub", link: "https://github.com/phyozawhein2000", color: "hover:bg-gray-800" },
+    { icon: <FaLinkedin className="w-5 h-5" />, name: "LinkedIn", link: "https://www.linkedin.com/in/phyozaw-hein-768164385/?skipRedirect=true", color: "hover:bg-blue-600" },
+    { icon: <FaTwitter className="w-5 h-5" />, name: "Twitter", link: "https://twitter.com/phyozawhein2000", color: "hover:bg-blue-400" },
+    { icon: <FaInstagram className="w-5 h-5" />, name: "Instagram", link: "https://instagram.com/@pz_2000", color: "hover:bg-pink-600" },
   ]
 
   return (

@@ -17,65 +17,97 @@ export default function Hero() {
 
   const navItems = ['Home', 'About', 'Projects', 'Contact']
 
-  // Mobile View Component
+  // Mobile View Component (With Background Image)
   if (isMobile) {
     return (
       <section id="home" className="relative min-h-screen flex flex-col items-center justify-start px-4 pt-8 overflow-y-auto">
-        
-        {/* Profile Image */}
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5, type: 'spring' }}
-          className="mt-12 mb-6"
-        >
-          <div className="w-40 h-40 mx-auto rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center shadow-2xl">
-            <img src="/images/image1.avif" alt="Profile" className="w-36 h-36 rounded-full object-cover" />
-          </div>
-        </motion.div>
 
-        {/* Name */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-3xl font-bold text-center mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-        >
-          Phyo Zaw Hein
-        </motion.h2>
+        {/* Background Image Layer for Mobile */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/image1.avif"
+            alt="Background"
+            fill
+            className="object-cover"
+            priority
+            quality={100}
+          />
+          {/* Dark Overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/60"></div>
+        </div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="text-gray-600 text-center mb-8"
-        >
-          Full Stack Developer
-        </motion.p>
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 z-0 bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-transparent"></div>
 
-        {/* Navigation Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="w-full max-w-sm space-y-3 mb-8"
-        >
-          {navItems.map((item, index) => (
-            <motion.a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className={`block w-full py-3 text-center rounded-xl font-medium transition-all duration-300 ${
-                item === 'Home'
-                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
-                  : 'bg-white text-gray-700 border border-gray-200 hover:border-blue-300 hover:shadow-md'
-              }`}
-            >
-              {item}
-            </motion.a>
-          ))}
-        </motion.div>
+        {/* Content */}
+        <div className="relative z-10 w-full">
+          {/* Profile Image */}
+          <motion.div
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, type: 'spring' }}
+            className="mt-12 mb-6"
+          >
+            <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center shadow-2xl p-1">
+              <img
+                src="/images/image1.avif"
+                alt="Profile"
+                className="w-full h-full rounded-full object-cover"
+              />
+            </div>
+          </motion.div>
+
+          {/* Name */}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-3xl font-bold text-center mb-2 text-white"
+          >
+            Phyo Zaw Hein
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-blue-200 text-center mb-8"
+          >
+            Full Stack Developer
+          </motion.p>
+
+          {/* Navigation Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="w-full max-w-sm mx-auto space-y-3 mb-8"
+          >
+            {navItems.map((item, index) => (
+              <motion.a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`block w-full py-3 text-center rounded-xl font-medium transition-all duration-300 ${item === 'Home'
+                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                    : 'bg-white/90 backdrop-blur-sm text-gray-800 border border-white/30 hover:bg-white hover:shadow-md'
+                  }`}
+              >
+                {item}
+              </motion.a>
+            ))}
+          </motion.div>
+
+          {/* Scroll Hint */}
+          <motion.div
+            animate={{ y: [0, 5, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5 }}
+            className="text-center text-gray-300 text-sm mt-auto mb-4 absolute bottom-5 left-0 right-0"
+          >
+            ↓ Scroll for more
+          </motion.div>
+        </div>
       </section>
     )
   }
@@ -83,7 +115,7 @@ export default function Hero() {
   // Desktop View (Original)
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center px-4 pt-20 overflow-hidden">
-      
+
       {/* Background Image Layer */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -106,8 +138,14 @@ export default function Hero() {
           transition={{ duration: 0.5, type: 'spring' }}
           className="mb-8"
         >
-          <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-blue-300 to-purple-500 flex items-center justify-center shadow-2xl">
-            <img src="/images/image1.avif" alt="Profile" className="w-28 h-28 rounded-full object-cover" />
+          <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-blue-300 to-purple-500 flex items-center justify-center shadow-2xl p-1">
+
+            <img
+              src="/images/image1.avif"
+              alt="Profile"
+              className="w-full h-full rounded-full object-cover"
+            />
+
           </div>
         </motion.div>
 
@@ -165,16 +203,6 @@ export default function Hero() {
             View Projects
           </motion.a>
         </motion.div>
-
-        {/* <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-        >
-          <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-            <div className="w-1 h-2 bg-white rounded-full mt-2 animate-bounce"></div>
-          </div>
-        </motion.div> */}
       </div>
     </section>
   )

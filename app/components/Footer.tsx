@@ -4,10 +4,10 @@ import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa'
 
 export default function Footer() {
   const socialLinks = [
-    { name: "GitHub", link: "#", icon: FaGithub, color: "hover:text-gray-400" },
-    { name: "LinkedIn", link: "#", icon: FaLinkedin, color: "hover:text-blue-400" },
-    { name: "Twitter", link: "#", icon: FaTwitter, color: "hover:text-blue-400" },
-    { name: "Instagram", link: "#", icon: FaInstagram, color: "hover:text-pink-400" },
+    { name: "GitHub", link: "https://github.com/phyozawhein2000", icon: FaGithub, color: "hover:text-gray-400" },
+    { name: "LinkedIn", link: "https://www.linkedin.com/in/phyozaw-hein-768164385/?skipRedirect=true", icon: FaLinkedin, color: "hover:text-blue-400" },
+    { name: "Twitter", link: "https://twitter.com/phyozawhein2000", icon: FaTwitter, color: "hover:text-blue-400" },
+    { name: "Instagram", link: "https://instagram.com/@pz_2000", icon: FaInstagram, color: "hover:text-pink-400" },
   ]
 
   return (
@@ -28,6 +28,7 @@ export default function Footer() {
                 href={social.link}
                 whileHover={{ y: -5, scale: 1.2 }}
                 className={`text-gray-400 transition-colors duration-300 ${social.color}`}
+                target="_blank"
               >
                 <social.icon className="w-6 h-6" />
               </motion.a>
