@@ -26,7 +26,7 @@ export default function Hero() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/image1.avif"
+            src="/images/image.webp"
             alt="Background"
             fill
             className="object-cover"
@@ -131,7 +131,7 @@ export default function Hero() {
       {/* Background Image Layer */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/image1.avif"
+          src="/images/image.webp"
           alt="Background"
           fill
           className="object-cover"
