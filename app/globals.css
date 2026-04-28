@@ -51,3 +51,27 @@
     transform: translate(0px, 0px) scale(1);
   }
 }
+/* Swiper Custom Styles */
+.projects-slider .swiper-pagination {
+  bottom: 0 !important;
+}
+
+.projects-slider .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: #6366f1;
+  opacity: 0.4;
+  transition: all 0.3s ease;
+}
+
+.projects-slider .swiper-pagination-bullet-active {
+  width: 24px;
+  background: #6366f1;
+  opacity: 1;
+  border-radius: 4px;
+}
+
+.projects-slider .swiper-button-disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
