@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 
 export default function Hero() {
   const [isMobile, setIsMobile] = useState(false)
+  const [imageError, setImageError] = useState(false)
 
   useEffect(() => {
     const checkMobile = () => {
@@ -17,7 +18,7 @@ export default function Hero() {
 
   const navItems = ['Home', 'About', 'Projects', 'Contact']
 
-  // Mobile View Component - Improved Design
+  // Mobile View Component
   if (isMobile) {
     return (
       <section id="home" className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
@@ -40,19 +41,32 @@ export default function Hero() {
 
         {/* Content */}
         <div className="relative z-10 w-full max-w-sm mx-auto text-center">
-          {/* Profile Image */}
+          {/* Profile Image - Fixed */}
           <motion.div
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, type: 'spring' }}
-            className="mb-6"
+            className="mb-6 flex justify-center"
           >
-            <div className="w-28 h-28 mx-auto rounded-full bg-gradient-to-r from-blue-500 to-purple-500 p-1">
-              <img src="/images/image1.avif" alt="Profile" className="w-full h-full rounded-full object-cover" />
+            <div className="relative w-28 h-28 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 p-1">
+              <div className="relative w-full h-full rounded-full overflow-hidden bg-gray-200">
+                {!imageError ? (
+                  <img
+                    src="/images/phyozawhein.jpg"
+                    alt="Phyo Zaw Hein"
+                    className="w-full h-full object-cover"
+                    onError={() => setImageError(true)}
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+                    <span className="text-4xl">👨‍💻</span>
+                  </div>
+                )}
+              </div>
             </div>
           </motion.div>
 
-          {/* Name with Glow Effect */}
+          {/* Name */}
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -62,7 +76,7 @@ export default function Hero() {
             Phyo Zaw Hein
           </motion.h2>
 
-          {/* Typing Title */}
+          {/* Title */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -82,7 +96,7 @@ export default function Hero() {
             Building beautiful digital experiences with modern technologies
           </motion.p>
 
-          {/* Navigation Buttons - Horizontal Scroll for Mobile */}
+          {/* Navigation Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -97,7 +111,7 @@ export default function Hero() {
                 whileTap={{ scale: 0.98 }}
                 className={`py-2.5 px-4 text-center rounded-xl font-medium transition-all duration-300 text-sm ${
                   item === 'Home'
-                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                    ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
                     : 'bg-white/10 backdrop-blur-sm border border-white/30 text-white hover:bg-white/20'
                 }`}
               >
@@ -105,51 +119,12 @@ export default function Hero() {
               </motion.a>
             ))}
           </motion.div>
-
-          {/* Action Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="flex gap-3 justify-center"
-          >
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="#contact"
-              className="flex-1 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium text-sm shadow-lg"
-            >
-              Get In Touch
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="#projects"
-              className="flex-1 py-2.5 border border-white/30 text-white rounded-xl font-medium text-sm hover:bg-white/10 transition"
-            >
-              View Work
-            </motion.a>
-          </motion.div>
-
-          {/* Scroll Hint */}
-          {/* <motion.div
-            animate={{ y: [0, 5, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-            className="absolute bottom-5 left-0 right-0 text-center"
-          >
-            <div className="text-gray-400 text-xs flex flex-col items-center gap-1">
-              <span>Scroll for more</span>
-              <svg className="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </div>
-          </motion.div> */}
         </div>
       </section>
     )
   }
 
-  // Desktop View (Original)
+  // Desktop View
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center px-4 pt-20 overflow-hidden">
       
@@ -169,14 +144,28 @@ export default function Hero() {
       <div className="absolute inset-0 z-0 bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-transparent"></div>
 
       <div className="relative z-10 max-w-5xl mx-auto text-center text-white">
+        {/* Profile Image - Desktop Fixed */}
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.5, type: 'spring' }}
-          className="mb-8"
+          className="mb-8 flex justify-center"
         >
-          <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-blue-300 to-purple-500 flex items-center justify-center shadow-2xl p-1">
-            <img src="/images/image1.avif" alt="Profile" className="w-full h-full rounded-full object-cover" />
+          <div className="relative w-32 h-32 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 p-1">
+            <div className="relative w-full h-full rounded-full overflow-hidden bg-gray-200">
+              {!imageError ? (
+                <img
+                  src="/images/phyozawhein.jpg"
+                  alt="Phyo Zaw Hein"
+                  className="w-full h-full object-cover"
+                  onError={() => setImageError(true)}
+                />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+                  <span className="text-4xl">👨‍💻</span>
+                </div>
+              )}
+            </div>
           </div>
         </motion.div>
 
@@ -235,15 +224,6 @@ export default function Hero() {
           </motion.a>
         </motion.div>
 
-        {/* <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-        >
-          <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-            <div className="w-1 h-2 bg-white rounded-full mt-2 animate-bounce"></div>
-          </div>
-        </motion.div> */}
       </div>
     </section>
   )
