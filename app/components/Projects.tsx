@@ -5,6 +5,7 @@ import { FaGithub, FaExternalLinkAlt, FaArrowLeft, FaArrowRight } from 'react-ic
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay, EffectCoverflow } from 'swiper/modules'
 import { useRef, useState } from 'react'
+import type { Swiper as SwiperCore } from 'swiper'
 
 // Import Swiper styles
 import 'swiper/css'
@@ -16,9 +17,9 @@ const projects = [
   {
     title: "E-Commerce Platform",
     description: "Full-featured online store with real-time inventory, payment integration, and admin dashboard.",
-    tech: ["Next.js", "TypeScript", "Stripe", "Tailwind", "PHP", "Laravel", "PgSQL"],
+    tech: ["Next.js", "TypeScript", "Stripe", "Tailwind", "Laravel"],
     image: "🛒",
-    gradient: "from-indigo-500 to-purple-500",
+    gradient: "from-indigo-600 to-blue-500",
     github: "https://github.com/phyozawhein2000/ecommerce_api",
     demo: "https://github.com/phyozawhein2000"
   },
@@ -27,16 +28,16 @@ const projects = [
     description: "Generate blog posts, social media content, and images using OpenAI GPT-4 and DALL-E.",
     tech: ["Python", "FastAPI", "React", "OpenAI"],
     image: "🤖",
-    gradient: "from-purple-500 to-pink-500",
+    gradient: "from-purple-600 to-pink-500",
     github: "https://github.com/phyozawhein2000",
     demo: "https://ai-content-generator-demo.vercel.app"
   },
   {
     title: "Fitness Tracker App",
-    description: "Track your workouts, monitor progress, and achieve your fitness goals.",
+    description: "Track your workouts, monitor progress, and achieve your fitness goals with data visualization.",
     tech: ["Kotlin", "PHP", "MySQL"],
     image: "✅",
-    gradient: "from-green-500 to-teal-500",
+    gradient: "from-emerald-500 to-teal-500",
     github: "https://github.com/phyozawhein2000/Fitness_Tracker_App",
     demo: "https://fitness-tracker-app-demo.vercel.app"
   },
@@ -51,19 +52,19 @@ const projects = [
   },
   {
     title: "Food Fusion Website",
-    description: "A vibrant website for a fusion restaurant, showcasing the menu, chef's story, and online reservations.",
-    tech: ["HTML", "Tailwind CSS", "PHP", "MySQL"],
+    description: "A vibrant website for a fusion restaurant, showcasing the menu and online reservations.",
+    tech: ["HTML", "Tailwind", "PHP", "MySQL"],
     image: "🍽️",
-    gradient: "from-yellow-500 to-red-500",
+    gradient: "from-yellow-500 to-orange-600",
     github: "https://github.com/phyozawhein2000/FoodFusion",
     demo: "https://foodfusion.infinityfree.me/?i=1"
   },
   {
-    title: "Business Portfolio Website",
-    description: "A sleek and modern portfolio website for a business, featuring services, team members, and contact information.",
-    tech: ["PHP","Laravel", "MySQL"],
+    title: "Business Portfolio",
+    description: "Modern portfolio for an engineering firm featuring services and contact systems.",
+    tech: ["PHP", "Laravel", "MySQL"],
     image: "💼",
-    gradient: "from-blue-500 to-green-500",
+    gradient: "from-cyan-500 to-blue-600",
     github: "https://github.com/phyozawhein2000/thaya",
     demo: "https://www.thayaengineering.com/"
   }
@@ -72,234 +73,129 @@ const projects = [
 export default function Projects() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [activeIndex, setActiveIndex] = useState(0)
-  const swiperRef = useRef<any>(null)
+  const swiperRef = useRef<SwiperCore | null>(null)
 
   return (
-    <section id="projects" className="py-20 px-6 bg-gradient-to-br from-gray-50 to-indigo-50 overflow-hidden">
+    <section id="projects" className="py-24 px-6 bg-[#f8fafc] overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           ref={ref}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <span className="text-indigo-600 font-semibold text-sm uppercase tracking-wider">Portfolio</span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-2 mb-4">
-            My Recent <span className="bg-gradient-to-r from-indigo-600 to-pink-600 bg-clip-text text-transparent">Work</span>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 mb-4">
+            My Recent <span className="text-indigo-600">Work</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-indigo-600 to-pink-600 mx-auto"></div>
-          <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-            Here are some projects I've worked on. Each one was crafted with care and attention to detail.
+          <div className="w-20 h-1.5 bg-indigo-600 mx-auto rounded-full mb-6"></div>
+          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+            A selection of projects that showcase my passion for clean code and user-centric design.
           </p>
         </motion.div>
 
-        {/* Project Counter */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          className="text-center mb-6"
-        >
-          <span className="inline-block px-4 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm font-semibold">
-            {activeIndex + 1} / {projects.length} Projects
-          </span>
-        </motion.div>
-
         {/* Swiper Slider */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={inView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="relative"
-        >
+        <div className="relative group px-4 md:px-12">
           <Swiper
             onSwiper={(swiper) => (swiperRef.current = swiper)}
-            onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+            onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
             modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
             effect="coverflow"
-            coverflowEffect={{
-              rotate: 50,
-              stretch: 0,
-              depth: 100,
-              modifier: 1,
-              slideShadows: true,
-            }}
-            grabCursor={true}
+            loop={true}
             centeredSlides={true}
             slidesPerView={1}
-            spaceBetween={30}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-            }}
-            pagination={{
-              clickable: true,
-              dynamicBullets: true,
+            grabCursor={true}
+            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            coverflowEffect={{
+              rotate: 0,
+              stretch: 0,
+              depth: 100,
+              modifier: 2.5,
+              slideShadows: false,
             }}
             breakpoints={{
-              640: {
-                slidesPerView: 1.2,
-                spaceBetween: 20,
-              },
-              768: {
-                slidesPerView: 2,
-                spaceBetween: 30,
-              },
-              1024: {
-                slidesPerView: 2.5,
-                spaceBetween: 30,
-              },
-              1280: {
-                slidesPerView: 3,
-                spaceBetween: 30,
-              },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
             }}
-            className="projects-slider !pb-16"
+            pagination={{ clickable: true, el: '.custom-pagination' }}
+            className="!pb-20 !pt-10"
           >
             {projects.map((project, index) => (
               <SwiperSlide key={project.title}>
-                <motion.div
-                  whileHover={{ y: -8 }}
-                  className="group bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 h-full"
-                >
-                  <div className={`h-48 bg-gradient-to-r ${project.gradient} flex items-center justify-center relative overflow-hidden`}>
-                    <motion.div
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      className="text-7xl"
-                    >
+                <div className={`
+                  bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden 
+                  transition-all duration-500 h-full flex flex-col
+                  ${activeIndex === index ? 'scale-100 opacity-100 shadow-2xl' : 'scale-90 opacity-40 blur-[1px]'}
+                `}>
+                  {/* Card Header */}
+                  <div className={`h-52 bg-gradient-to-br ${project.gradient} flex items-center justify-center relative`}>
+                    <span className="text-8xl drop-shadow-2xl transform group-hover:scale-110 transition-transform duration-500">
                       {project.image}
-                    </motion.div>
-                    <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity"></div>
-                    
-                    {/* Project Number Badge */}
-                    <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-full">
-                      #{index + 1}
+                    </span>
+                    <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full border border-white/30">
+                      PROJ-0{index + 1}
                     </div>
                   </div>
 
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-800 mb-2 line-clamp-1">
-                      {project.title}
-                    </h3>
-                    <p className="text-gray-600 mb-4 text-sm leading-relaxed line-clamp-3">
+                  {/* Card Body */}
+                  <div className="p-8 flex flex-col flex-grow">
+                    <h3 className="text-2xl font-bold text-gray-800 mb-3">{project.title}</h3>
+                    <p className="text-gray-600 mb-6 line-clamp-3 text-sm leading-relaxed flex-grow">
                       {project.description}
                     </p>
 
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tech.slice(0, 4).map((tech, i) => (
-                        <span key={i} className="px-2 py-1 bg-indigo-50 text-indigo-600 text-xs rounded-lg">
+                    <div className="flex flex-wrap gap-2 mb-8">
+                      {project.tech.map((tech) => (
+                        <span key={tech} className="px-3 py-1 bg-gray-50 text-gray-600 text-[11px] font-bold uppercase tracking-wider rounded-md border border-gray-100">
                           {tech}
                         </span>
                       ))}
-                      {project.tech.length > 4 && (
-                        <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-lg">
-                          +{project.tech.length - 4}
-                        </span>
-                      )}
                     </div>
 
-                    <div className="flex gap-3">
-                      <motion.a
-                        whileHover={{ scale: 1.05 }}
-                        href={project.github}
-                        target="_blank"
-                        className="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-lg text-sm hover:bg-gray-900 transition"
-                      >
-                        <FaGithub className="w-4 h-4" />
-                        Code
-                      </motion.a>
-                      <motion.a
-                        whileHover={{ scale: 1.05 }}
-                        href={project.demo}
-                        target="_blank"
-                        className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-600 to-pink-600 text-white rounded-lg text-sm hover:shadow-md transition"
-                      >
-                        <FaExternalLinkAlt className="w-3 h-3" />
-                        Live Demo
-                      </motion.a>
+                    <div className="flex gap-4">
+                      <a href={project.github} target="_blank" className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 bg-gray-900 text-white rounded-xl text-sm font-semibold hover:bg-black transition-colors">
+                        <FaGithub /> GitHub
+                      </a>
+                      <a href={project.demo} target="_blank" className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 bg-indigo-600 text-white rounded-xl text-sm font-semibold hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200">
+                        <FaExternalLinkAlt className="text-[10px]" /> Live Demo
+                      </a>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>
 
-          {/* Custom Navigation Buttons */}
-          <button
+          {/* Navigation Arrows */}
+          <button 
             onClick={() => swiperRef.current?.slidePrev()}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-4 z-20 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-indigo-600 hover:bg-indigo-600 hover:text-white transition-all duration-300"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white shadow-xl rounded-full flex items-center justify-center text-gray-800 hover:text-indigo-600 transition-all opacity-0 group-hover:opacity-100"
           >
-            <FaArrowLeft className="w-4 h-4 md:w-5 md:h-5" />
+            <FaArrowLeft />
           </button>
-          <button
+          <button 
             onClick={() => swiperRef.current?.slideNext()}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-4 z-20 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-indigo-600 hover:bg-indigo-600 hover:text-white transition-all duration-300"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white shadow-xl rounded-full flex items-center justify-center text-gray-800 hover:text-indigo-600 transition-all opacity-0 group-hover:opacity-100"
           >
-            <FaArrowRight className="w-4 h-4 md:w-5 md:h-5" />
+            <FaArrowRight />
           </button>
-        </motion.div>
 
-        {/* Quick Stats */}
-        {/* <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.4 }}
-          className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 text-center"
-        >
-          <div className="bg-white rounded-xl p-4 shadow-md">
-            <div className="text-2xl font-bold text-indigo-600">{projects.length}+</div>
-            <div className="text-sm text-gray-500">Total Projects</div>
-          </div>
-          <div className="bg-white rounded-xl p-4 shadow-md">
-            <div className="text-2xl font-bold text-indigo-600">
-              {projects.reduce((acc, p) => acc + p.tech.length, 0)}+
-            </div>
-            <div className="text-sm text-gray-500">Technologies Used</div>
-          </div>
-          <div className="bg-white rounded-xl p-4 shadow-md">
-            <div className="text-2xl font-bold text-indigo-600">100%</div>
-            <div className="text-sm text-gray-500">Client Satisfaction</div>
-          </div>
-          <div className="bg-white rounded-xl p-4 shadow-md">
-            <div className="text-2xl font-bold text-indigo-600">On Time</div>
-            <div className="text-sm text-gray-500">Delivery Rate</div>
-          </div>
-        </motion.div> */}
+          {/* Pagination Container */}
+          <div className="custom-pagination !bottom-4 flex justify-center gap-2"></div>
+        </div>
       </div>
 
-      {/* Custom CSS for Swiper */}
       <style jsx global>{`
-        .projects-slider .swiper-pagination-bullet {
-          background: #6366f1;
-          opacity: 0.5;
-        }
-        .projects-slider .swiper-pagination-bullet-active {
-          background: #6366f1;
+        .custom-pagination .swiper-pagination-bullet {
+          width: 8px;
+          height: 8px;
+          background: #cbd5e1;
           opacity: 1;
-          width: 20px;
-          border-radius: 4px;
+          transition: all 0.3s;
         }
-        .projects-slider .swiper-slide {
-          transition: all 0.3s ease;
-        }
-        .projects-slider .swiper-slide:not(.swiper-slide-active) {
-          opacity: 0.7;
-          transform: scale(0.95);
-        }
-        .projects-slider .swiper-slide-active {
-          opacity: 1;
-          transform: scale(1);
-        }
-        .line-clamp-1 {
-          display: -webkit-box;
-          -webkit-line-clamp: 1;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-        .line-clamp-3 {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
+        .custom-pagination .swiper-pagination-bullet-active {
+          width: 24px;
+          border-radius: 10px;
+          background: #4f46e5;
         }
       `}</style>
     </section>

@@ -141,7 +141,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-black/50"></div>
       </div>
 
-      <div className="absolute inset-0 z-0 bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-transparent"></div>
+      <div className="absolute inset-0 z-0 bg-gradient-to-br from-blue-600/10 via-purple-600/20 to-transparent"></div>
 
       <div className="relative z-10 max-w-5xl mx-auto text-center text-white">
         {/* Profile Image - Desktop Fixed */}

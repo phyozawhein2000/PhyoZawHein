@@ -6,14 +6,14 @@ const skills = [
   { name: 'React', level: 90, color: 'bg-blue-500' },
   { name: 'Next.js', level: 85, color: 'bg-gray-700' },
   { name: 'TypeScript', level: 85, color: 'bg-blue-600' },
-  { name: 'Node.js', level: 80, color: 'bg-green-500' },
   { name: 'Tailwind CSS', level: 90, color: 'bg-teal-500' },
-  { name: 'MongoDB', level: 75, color: 'bg-green-600' },
+  { name: 'PHP', level: 90, color: 'bg-purple-500' },
+  { name: 'Laravel', level: 90, color: 'bg-red-500' },
+  { name: 'MySQL', level: 80, color: 'bg-green-600' },
   { name: 'Python', level: 70, color: 'bg-yellow-500' },
   { name: 'Django', level: 65, color: 'bg-green-700' },
   { name: 'Git', level: 80, color: 'bg-gray-800' },
-  { name: 'PHP', level: 60, color: 'bg-purple-500' },
-  { name: 'Laravel', level: 55, color: 'bg-red-500' },
+
 ]
 
 export default function About() {
@@ -54,16 +54,16 @@ export default function About() {
             <div className="flex gap-3 flex-wrap text-sm md:text-base mb-6">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                <span>4+ Years Experience</span>
+                <span>3+ Years Experience</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
                 <span>20+ Projects</span>
               </div>
-              <div className="flex items-center gap-2">
+              {/* <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-pink-500 rounded-full"></div>
                 <span>10+ Clients</span>
-              </div>
+              </div> */}
             </div>
 
             {/* Download CV Button */}
