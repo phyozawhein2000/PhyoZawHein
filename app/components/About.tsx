@@ -42,7 +42,7 @@ export default function About() {
           >
             <h3 className="text-xl md:text-2xl font-semibold mb-4">Who Am I?</h3>
             <p className="text-gray-600 mb-4 leading-relaxed text-sm md:text-base">
-              I'm a passionate full-stack developer with 4+ years of experience
+              I'm a passionate full-stack developer with 3+ years of experience
               creating digital solutions that make a difference.
             </p>
             <p className="text-gray-600 mb-6 leading-relaxed text-sm md:text-base">
